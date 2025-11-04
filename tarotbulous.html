@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAROTBULOUS Readings 🔮</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(180deg, #1e0042, #0a0033);
+    color: #f7eaff;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  h1 {
+    color: #cba6ff;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  button {
+    background: linear-gradient(90deg, #784dff, #c59fff);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  button:hover {
+    opacity: 0.9;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(4px);
+    margin: 12px auto;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 380px;
+    box-shadow: 0 0 10px rgba(187,143,255,0.4);
+  }
+
+  a {
+    color: #ffd6ff;
+    text-decoration: underline;
+  }
+
+  footer {
+    margin-top: 30px;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+
+<h1>✨ TAROTBULOUS ✨</h1>
+<p>Ask your question and receive your free tarot reading 💫<br>
+Let the universe guide you to your message...</p>
+
+<input type="text" id="question" placeholder="Type your question here...">
+<br>
+<button onclick="getReading()">Reveal My Reading</button>
+
+<div id="reading"></div>
+
+<footer>🪄 Tarot Readings by Tarotbulous | Follow on YouTube 💜</footer>
+
+<script>
+const tarotCards = [
+  { name: "The Fool", meaning: "A new journey, freedom, and trusting the universe.", video: "https://youtu.be/YOUR-VIDEO1" },
+  { name: "The Magician", meaning: "Manifestation power and creative potential.", video: "https://youtu.be/YOUR-VIDEO2" },
+  { name: "The High Priestess", meaning: "Trust your intuition and inner knowing.", video: "https://youtu.be/YOUR-VIDEO3" },
+  { name: "The Empress", meaning: "Abundance, beauty, and nurturing energy.", video: "https://youtu.be/YOUR-VIDEO4" },
+  { name: "The Tower", meaning: "A sudden change brings hidden truth and clarity.", video: "https://youtu.be/YOUR-VIDEO5" },
+  { name: "The Lovers", meaning: "Love, harmony, or important heart-centered choices.", video: "https://youtu.be/YOUR-VIDEO6" },
+  { name: "Death", meaning: "Transformation and a powerful rebirth.", video: "https://youtu.be/YOUR-VIDEO7" },
+  { name: "The Star", meaning: "Hope, divine guidance, and renewed faith.", video: "https://youtu.be/YOUR-VIDEO8" },
+  { name: "The Moon", meaning: "Mystery, dreams, and subconscious emotions.", video: "https://youtu.be/YOUR-VIDEO9" }
+];
+
+function getReading() {
+  const q = document.getElementById('question').value.trim();
+  if (!q) { alert("Please type your question first!"); return; }
+
+  const picked = [];
+  while (picked.length < 3) {
+    const random = tarotCards[Math.floor(Math.random() * tarotCards.length)];
+    if (!picked.includes(random)) picked.push(random);
+  }
+
+  let html = `<h2>Your Question:</h2><p>${q}</p>`;
+  html += `<h3>🔮 Your 3-Card Reading</h3>`;
+
+  picked.forEach(card => {
+    html += `<div class="card"><h4>${card.name}</h4><p>${card.meaning}</p></div>`;
+  });
+
+  const rec = picked[Math.floor(Math.random() * picked.length)];
+  html += `<h3>💜 Watch This Video for Deeper Insight:</h3>
+  <p><a href="${rec.video}" target="_blank">${rec.name} — YouTube Reading</a></p>`;
+
+  document.getElementById('reading').innerHTML = html;
+}
+</script>
+
+</body>
+</html>
